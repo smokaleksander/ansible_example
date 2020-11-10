@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow                  # new type of k8s spec
+metadata:
+  generateName: ansible-task    # name of the workflow spec
+spec:
+  entrypoint: ansible         # invoke the whalesay template
+  templates:
+  - name: ansible              # name of the template
+    container:
+      image: smokaleksander/ansible
+      command: [ansible-playbok]
+      args: ["-v ${PWD}/playbook.yml:/playbook.yml -v ${PWD}/inventory:/inventory asmok/ansible:latest 'ansible-playbook' '-i' 'inventory' 'playbook.yml'"]
+      resources:                # limit the resources
+        limits:
+          memory: 32Mi
+          cpu: 100m

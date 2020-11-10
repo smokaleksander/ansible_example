@@ -1,0 +1,8 @@
+---
+# avoid the host name "localhost". jlk says this prevents some magic that
+# Ansible has for dealing with localhost.
+- hosts: mymachine
+  tasks:
+    # see https://docs.ansible.com/ansible/ping_module.html
+    - name: test connection
+      ping:
