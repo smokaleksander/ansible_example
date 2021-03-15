@@ -6,3 +6,7 @@
     # see https://docs.ansible.com/ansible/ping_module.html
     - name: test connection
       ping:
+
+    - name: extravars example
+      debug:
+        msg: "{{ my_extra_var }}"
